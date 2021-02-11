@@ -1,9 +1,9 @@
 # TP de réseau
 
-- [Sujet IP, UDP et TCP](sujet1)
+- [Sujet 1 : IP, UDP et TCP](sujet1.md)
 
 
 ## Annexe
 
-- [Aide socklab](socklab)
+- [Aide socklab](socklab.md)
 
