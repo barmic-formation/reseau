@@ -2,7 +2,7 @@
 
 Cette partie est à effectuer depuis votre ordinateur. Vous aurez besoin de [wireshark](https://www.wireshark.org/).
 
-Lancez un traceroute vers l’un des serveurs HTTP de votre choix, par exemple www.ietf.org.
+Lancez depuis la ligne de commande `traceroute` vers l’un des serveurs HTTP de votre choix, par exemple www.ietf.org.
 Sur windows l'utilitaire s'appel tracert.
 
 > Note : Lorsque `tracert` ou `traceroute` vous affiche des `*` c'est que les routeurs en questions ne vous ont pas répondu.
