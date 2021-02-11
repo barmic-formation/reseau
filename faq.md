@@ -39,3 +39,7 @@ Au choix:
 ## Libérer le clavier de la machine virtuelle
 
 Quand vous utilisez une machine virtuelle, virtualbox va capturer toutes les touches du clavier pour la machine virtuelle. Pour quitter la machine le raccourci par défaut est la touche Ctrl de gauche.
+
+## Vous avez l'erreur `Error while creating link: Attachment 'nat' is already configured on adapter 0. Please remove it or allow VirtualBox VM 'FreeBSD-1' to use any adapter.` dans GNS
+
+Clique droit sur chacune de vos machines, faites clique droit > `Configure` > `Network` et cochez la case : `Allow GNS3 to use any configured VirtualBox adapter`.

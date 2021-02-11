@@ -46,6 +46,8 @@ Sur la 2e machine demandez à lire les données :
 recvfrom <id de socket> <nb octets>
 ```
 
+Pour utiliser wireshark, faites un clique droit sur le lien entre les 2 machines et 
+
 - **Question 7** Quels paquets transitent sur le réseau lors de l’envoi d’un message par UDP ?
 - **Question 8** Que se passe-t-il si l’on demande à lire moins d’octets que ceux envoyés ?
 - **Question 9** Si l’on envoie plusieurs messages avant de lire de l’autre côté ?
