@@ -23,6 +23,7 @@ Pour ce premier TP vous n'aurez besoin que 2 de machines avec un seul lien entre
 N'oubliez pas de les démarrer et ouvrez une console sur chacune d'elle.
 
 Voici la toppologie que vous devrier utiliser pour ce TP :
+
 ![topologie](gns.png)
 
 ## Protocole UDP
