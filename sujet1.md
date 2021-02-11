@@ -6,9 +6,9 @@ Lancez depuis la ligne de commande `traceroute` vers l’un des serveurs HTTP de
 Sur windows l'utilitaire s'appel tracert.
 
 > Note : `traceroute` (et `tracert`) vous affiche une ligne par routeur intermédiare entre votre ordinateur et le serveur cible.
-
+>
 > Pour chaque étape, vous avez 3 tentatives qui vont donner 3 temps.
-
+>
 > Lorsque `tracert` ou `traceroute` vous affiche des `*` c'est que les routeurs en questions ne vous ont pas répondu.
 
 - **Question 1** Quel serveur avez-vous choisi ? Quelle est son adresse IP ?
