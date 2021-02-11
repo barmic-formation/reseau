@@ -5,7 +5,7 @@ Cette partie est à effectuer depuis votre ordinateur. Vous aurez besoin de [wir
 Lancez un traceroute vers l’un des serveurs HTTP de votre choix, par exemple www.ietf.org.
 Sur windows l'utilitaire s'appel tracert.
 
-Lorsque `tracert` ou `traceroute` vous affiche des `*` c'est que les routeurs en questions ne vous ont pas répondu.
+> Note : Lorsque `tracert` ou `traceroute` vous affiche des `*` c'est que les routeurs en questions ne vous ont pas répondu.
 
 - **Question 1** Quel serveur avez-vous choisi ? Quelle est son adresse IP ?
 - **Question 2** Utilisez wireshark pour observer les paquets échangés lors du traceroute. Quels protocoles sont utilisés ? Comment fonctionne traceroute ? Observer notamment les champs de la couche réseau.
@@ -20,21 +20,21 @@ N'oubliez pas de les démarrer et ouvrez une console sur chcune d'elle.
 
 ## Protocole UDP
 
-**Question 5** Quels sont les services fournis par UDP ?
+- **Question 5** Quels sont les services fournis par UDP ?
 
 Lancez socklab en mode udp sur les deux stations connectées :
-```
+```sh
 socklab udp
 ```
 Sur l’une des stations démarrez une capture wireshark. Sur chaque station créez une socket udp avec la commande socket.
 
 - **Question 6** À quoi sert le numéro de port qui vous est renvoyé ? Comment la machine destinataire le connaı̂t-elle ?
 Sur l’une des machines envoyez des données vers l’autre en précisant son adresse IP et son numéro de port
-```
+```sh
 sendto <id de socket> <nom de machine> <port destinataire>
 ```
 Sur la 2e machine demandez à lire les données :
-```
+```sh
 recvfrom <id de socket> <nb octets>
 ```
 
@@ -48,7 +48,7 @@ recvfrom <id de socket> <nb octets>
 ## Protocole TCP
 
 Lancez socklab en mode tcp sur les deux stations connectées :
-```
+```sh
 socklab tcp
 ```
 Sur l’une des stations démarrez une capture wireshark. Établissez une connexion TCP.
