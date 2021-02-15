@@ -18,13 +18,53 @@ Sur windows l'utilitaire s'appel tracert.
 
 # Couche Transport
 
-Cette partie nécessite GNS.
-Pour ce premier TP vous n'aurez besoin que 2 de machines avec un seul lien entre elles.
-N'oubliez pas de les démarrer et ouvrez une console sur chacune d'elle.
+## Préparation de votre environnement
 
-Voici la toppologie que vous devrier utiliser pour ce TP :
+Nous allons créer une topologie réseau avec GNS.
+
+Pour ce premier TP vous n'aurez besoin que 2 de machines avec un seul lien entre elles.
+
+1. Commencez par créer 2 machines virtuelles virtualbox sans les démarrer.
+2. Dans GNS, importez vos machines virtuelles comme template (_Edit_ > _Preferences_ > _VirtualBox VMs_ puis _New_)
+3. Dans la barre de gauche ouvrez _End devices_ vous devriez retrouver vos machines. Glissez-les dans la zone principale.
+4. Faites un clique droit sur chaque machine, allez dans _Configure_ puis _Network_ et cochez la case _Allow GNS3 tu use any configured VirtualBox adapter_.
+5. Ajoutez un lien entre les 2 machines. Vous pouvez choisir l'interface ethernet que vous souhaitez.
+
+Voici la toppologie que vous devrier avoir :
 
 ![topologie](gns.png)
+
+Pour terminer on va rapidement configurer le réseau de chacune des machines.
+
+Démarrez-les via le menu contextuel, vous devriez avoir virtualbox qui se lance.
+
+Les machines n'ont pas d'autoconfiguration, nous allons les configurer. Nous entreront plus en détails dans le second TP.
+
+Sur chaque la première machine lancez:
+
+```sh
+ifconfig em0 inet 10.0.0.1 netmask 255.255.255.0
+ifconfig em0 ether 01:01:01:01:01:01
+```
+
+Sur la seconde machine :
+
+```sh
+ifconfig em0 inet 10.0.0.2 netmask 255.255.255.0
+ifconfig em0 ether 01:01:01:01:01:02
+```
+
+Pour vérifier que tout fonctionne, depuis la premier machine lancez :
+
+```sh
+ping 10.0.0.2
+```
+
+Vous devriez obtenir l'affichage suivant qui se répète :
+
+```
+64 bytes from 10.0.0.2: icmp_seq=1 ttl=64 time=0.043 ms
+```
 
 ## Protocole UDP
 
