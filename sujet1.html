@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
+  <head>
+    <link rel="stylesheet" title="Gold (right, fixed) + navbar" href="style.css">
+    <title>TP réseau</title>
+  </head>
+<body>
+<nav>
+    <h4>Menu</h4>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li>
+            Sujets :
+            <ul>
+                <li><a href="sujet1.html">Sujet 1</a></li>
+                <li><a href="sujet2.html">Sujet 2</a></li>
+            </ul>
+        </li>
+        <li>
+            Annexes :
+            <ul>
+                <li><a href="explications.html">Explications</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="socklab.html">socklab</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<main class="wrapper">
+<h1>Sujet 1</h1>
+<a href="index.html">Home</a>
+
+<h2>Contrôle et gestion d’erreurs de la couche réseau avec ICMP</h2>
+
+<p>Cette partie est à effectuer depuis votre ordinateur. Vous aurez besoin de <a href="https://www.wireshark.org/"></a>wireshark</a>.</p>
+
+<p>Lancez depuis la ligne de commande <code>traceroute</code> vers l’un des serveurs HTTP de votre choix, par exemple www.ietf.org.
+Sur windows l'utilitaire s'appel tracert.</p>
+
+<p>Note : <code>traceroute</code> (et <code>tracert</code>) vous affiche une ligne par routeur intermédiare entre votre ordinateur et le serveur cible.
+
+Pour chaque étape, vous avez 3 tentatives qui vont donner 3 temps.
+
+Lorsque <code>tracert</code> ou <code>traceroute</code> vous affiche des <code>*</code> c'est que les routeurs en questions ne vous ont pas répondu.</p>
+
+<ul>
+<li><em>Question 1</em> Quel serveur avez-vous choisi ? Quelle est son adresse IP ?</li>
+<li><em>Question 2</em> Utilisez wireshark pour observer les paquets échangés lors du traceroute. Quels protocoles sont utilisés ? Comment fonctionne traceroute ? Observer notamment les champs de la couche réseau.</li>
+<li><em>Question 3</em> Combien de routeurs le dernier paquet a-t-il traversé au total ? Quel est le temps d’aller/retour (RTT) entre votre machine et la machine distante ? Donnez les 3 valeurs observées. Y a-t-il eu des paquets perdus ?</li>
+<li><em>Question 4</em> Tester le RTT avec la commande ping sur le même serveur. Utilisez l’option <code>-c 1</code> pour faire un unique test.</li>
+</ul>
+
+<h2>Couche Transport</h2>
+
+<h3>Préparation de votre environnement</h3>
+
+<p>Nous allons créer une topologie réseau avec GNS.</p>
+
+<p>Pour ce premier TP vous n'aurez besoin que 2 de machines avec un seul lien entre elles.</p>
+
+<ul>
+<li>1. Commencez par créer 2 machines virtuelles virtualbox sans les démarrer.</li>
+<li>2. Dans GNS, importez vos machines virtuelles comme template (<code>Edit > Preferences > VirtualBox VMs puis New</code>)</li>
+<li>3. Dans la barre de gauche ouvrez <code>End devices</code> vous devriez retrouver vos machines. Glissez-les dans la zone principale.</li>
+<li>4. Faites un clique droit sur chaque machine, allez dans <code>Configure</code> puis <code>Network</code> et cochez la case <code>Allow GNS3 tu use any configured VirtualBox adapter</code>.</li>
+<li>5. Ajoutez un lien entre les 2 machines. Vous pouvez choisir l'interface ethernet que vous souhaitez.</li>
+</ul>
+<p>Voici la toppologie que vous devrier avoir :</p>
+
+<img src="gns.png">
+
+<p>Pour terminer on va rapidement configurer le réseau de chacune des machines.</p>
+
+<p>Démarrez-les via le menu contextuel, vous devriez avoir virtualbox qui se lance.</p>
+
+<p>Les machines n'ont pas d'autoconfiguration, nous allons les configurer. Nous entreront plus en détails dans le second TP.</p>
+
+<p>Sur chaque la première machine lancez:</p>
+
+<pre>
+ifconfig em0 inet 10.0.0.1 netmask 255.255.255.0
+ifconfig em0 ether 01:01:01:01:01:01
+</pre>
+
+<p>Sur la seconde machine :</p>
+
+<pre>
+ifconfig em0 inet 10.0.0.2 netmask 255.255.255.0
+ifconfig em0 ether 01:01:01:01:01:02
+</pre>
+
+<p>Pour vérifier que tout fonctionne, depuis la premier machine lancez :</p>
+
+<pre>
+ping 10.0.0.2
+</pre>
+
+<p>Vous devriez obtenir l'affichage suivant qui se répète :</p>
+
+<pre>
+64 bytes from 10.0.0.2: icmp_seq=1 ttl=64 time=0.043 ms
+</pre>
+
+<h2>Protocole UDP</h2>
+
+<ul>
+    <li><em>Question 5</em> Quels sont les services fournis par UDP ?</li>
+</ul>
+
+<p>Lancez socklab en mode udp sur les deux stations connectées :</p>
+<pre>
+socklab udp
+</pre>
+<p>Sur l’une des stations démarrez une capture wireshark. Sur chaque station créez une socket udp avec la commande socket.</p>
+
+<ul>
+<li><em>Question 6</em> À quoi sert le numéro de port qui vous est renvoyé ? Comment la machine destinataire le connaı̂t-elle ?</li>
+</ul>
+<p>Sur l’une des machines envoyez des données vers l’autre en précisant son adresse IP et son numéro de port</p>
+<pre>
+sendto &lt;id de socket> &lt;nom de machine> &lt;port destinataire>
+</pre>
+<p>Sur la 2e machine demandez à lire les données :</p>
+<pre>
+recvfrom &lt;id de socket> &lt;nb octets>
+</pre>
+
+<p>Pour utiliser wireshark, faites un clique droit sur le lien entre les 2 machines et </p>
+
+<ul>
+<li><em>Question 7</em> Quels paquets transitent sur le réseau lors de l’envoi d’un message par UDP ?</li>
+<li><em>Question 8</em> Que se passe-t-il si l’on demande à lire moins d’octets que ceux envoyés ?</li>
+<li><em>Question 9</em> Si l’on envoie plusieurs messages avant de lire de l’autre côté ?</li>
+<li><em>Question 10</em> Si vous envoyez le message vers un port inexistant ?</li>
+<li><em>Question 11</em> Si vous envoyez plus de données que la taille du MTU ? (pour envoyer 1000 octets tapez <code>#1000</code> à la place du message à envoyer). La taille maximale d’un paquet est donnée par son MTU (<code>ifconfig</code>). Que signifie MTU ?</li>
+<li><em>Question 12</em> Consultez les options par défaut de votre socket. Changez la taille du tampon (buffer) de réception. Expérimentez des envois de données supérieures.</li>
+</ul>
+
+<h2>Protocole TCP</h2>
+
+<p>Lancez socklab en mode tcp sur les deux stations connectées :</p>
+<pre>
+socklab tcp
+</pre>
+<p>Sur l’une des stations démarrez une capture wireshark. Établissez une connexion TCP.</p>
+<ul>
+<li><em>Question 13</em> Analysez les paquets échangés. Quel est le rôle du flag SYN ? Quelles sont les options dans l’en-tete du premier message ?
+Établissez deux connexions vers un même port destinataire ?</li>
+<li><em>Question 14</em> Qu’est-ce qui identifie une connexion TCP ?</li>
+</ul>
+<p>Fermez la connexion avec close.</p>
+<ul>
+<li><em>Question 15</em> Quels sont les messages échangés ? Faites un diagramme temporel indiquant les flags positionnés, les numéros de séquence et d’acquittement si besoin.</li>
+Établissez une connexion TCP puis déconnectez le câble réseau d’une des machines. Envoyez un message depuis la machine où vous avez lancé wireshark vers l’autre machine.
+<li><em>Question 16</em> Que se passe-t-il ? Et lorsque vous rebranchez le câble ? Que peut-on en conclure ? Quelle est la durée entre deux retransmissions ? Quelle est la durée entre la 1 re émission et la dernière retransmission ?</li>
+<li><em>Question 17</em> Consultez les options par défaut de votre socket. Changez la taille du tampon de réception.
+Expérimentez des envois de données supérieures.</li>
+</ul>
+</main>
+</body>
+</html>

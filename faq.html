@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
+  <head>
+    <link rel="stylesheet" title="Gold (right, fixed) + navbar" href="style.css">
+    <title>TP réseau</title>
+  </head>
+<body>
+<nav>
+    <h4>Menu</h4>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li>
+            Sujets :
+            <ul>
+                <li><a href="sujet1.html">Sujet 1</a></li>
+                <li><a href="sujet2.html">Sujet 2</a></li>
+            </ul>
+        </li>
+        <li>
+            Annexes :
+            <ul>
+                <li><a href="explications.html">Explications</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="socklab.html">socklab</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<main class="wrapper">
+<h1>FAQ</h1>
+<a href="index.html">Home</a>
+
+<h2>Se connecter sur les machines freebsd</h2>
+
+<p>Les machines virtuelles que vous utilisez sont installées en FreeBSD. Vous travaillerez sous le login root sans mot de passe.
+Vous lancez ensuite xinit pour accéder à l’interface graphique.</p>
+
+<h2>Ping ne s’arrête pas</h2>
+
+<p>Tapez ctrl-C.</p>
+
+<h2>Connaitre la configuration réseau de votre machine virtuel</h2>
+
+<p>Utilisez la commande ifconfig dans un terminal.</p>
+
+<p>Elle donne un résultat de la forme :</p>
+
+<pre>
+em0: flags=4099&lt;UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether 02:42:04:51:00:a0  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+</pre>
+
+<p>Il s'aggit ici d'un extrait.
+On peut y voir que l'interface `em0` a l'adresse `172.17.0.1`, le masque de sous réseau est `255.255.0.0` et l'adresse de broadcast est donc `172.17.255.255`.
+L'adresse mac de l'interface ethernet est `02:42:04:51:00:a0`.</p>
+
+<h2>Remettre à zéros la configuration réseau d'une machine virtuelle</h2>
+
+<p>Au choix:</p>
+<ul>
+    <li>redémarrez la machine</li>
+    <li>détruire et recréer la machine via GNS</li>
+</ul>
+
+<h2>Libérer le clavier de la machine virtuelle</h2>
+
+<p>Quand vous utilisez une machine virtuelle, virtualbox va capturer toutes les touches du clavier pour la machine virtuelle. Pour quitter la machine le raccourci par défaut est la touche Ctrl de gauche.</p>
+
+<h2>Vous avez l'erreur `Error while creating link: Attachment 'nat' is already configured on adapter 0. Please remove it or allow VirtualBox VM 'FreeBSD-1' to use any adapter.` dans GNS</h2>
+
+<p>Clique droit sur chacune de vos machines, faites clique droit > `Configure` > `Network` et cochez la case : `Allow GNS3 to use any configured VirtualBox adapter`.</p>
+</main>
+</body>
+</html>

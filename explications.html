@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
+  <head>
+    <link rel="stylesheet" title="Gold (right, fixed) + navbar" href="style.css">
+    <title>TP réseau</title>
+  </head>
+<body>
+  <nav>
+      <h4>Menu</h4>
+      <ul>
+          <li><a href="index.html">Home</a></li>
+          <li>
+              Sujets :
+              <ul>
+                  <li><a href="sujet1.html">Sujet 1</a></li>
+                  <li><a href="sujet2.html">Sujet 2</a></li>
+              </ul>
+          </li>
+          <li>
+              Annexes :
+              <ul>
+                  <li><a href="explications.html">Explications</a></li>
+                  <li><a href="faq.html">FAQ</a></li>
+                  <li><a href="socklab.html">socklab</a></li>
+              </ul>
+          </li>
+      </ul>
+  </nav>
+<main class="wrapper">
+<h1>TP réseau</h1>
+<a href="index.html">Home</a>
+<h2>Introduction</h2>
+
+<h3>Adresse MAC et adresse Internet</h3>
+
+<p>Chaque interface ethernet possède une adresse ethernet 1 (de couche 2, également appelée adresse MAC)
+qui l’identifie et qui lui est affectée une fois pour toute lors de sa fabrication (deux machines ne
+peuvent pas avoir la même adresse ethernet). Une telle adresse tient sur six octets. La notation
+habituelle pour ces adresses ethernet consiste à écrire les six octets hexadécimal et à les séparer par
+des « <code>:</code> ». Par exemple : <code>08:00:20:04:69:d6</code>.</p>
+
+<p>Sachant que tout le monde n’utilise pas nécessairement les réseaux ethernet, autrement dit des mécanismes
+différents d’adressage peuvent exister, et que des réseaux de types différents peuvent être interconnectés,
+il est donc nécessaire d’attribuer une adresse logique à chaque machine qui permet de faire abstraction
+de la nature des réseaux : dans notre cas c’est l’adressage Internet qu’on utilisera (adresse de niveau
+"réseau" dans les couches OSI). Cette adresse comporte 4 octets (IPv4) que l’on note généralement séparés
+par des points.</p>
+
+<p><em>Le protocole ARP</em> La correspondance entre les adresses Internet et les adresses de niveau 2 sont
+assurées par le protocole ARP (Address Resolution Protocol). Chaque machine maintient une table ARP
+contenant les correspondances entre les adresses IP et les adresses MAC. Cette table contient un champ
+Time-to-Live (TTL) qui indique au bout de combien de temps une entrée doit être retirée de la table. Ce
+temps est typiquement de 20 minutes après insertion d’une entrée dans la table. Lorsqu’une machine A
+veut envoyer un datagramme à une machine B portant l’adresse IP 195.221.226.92 et qu’aucune entrée
+dans la table ARP ne correspond à cette adresse, le protocole ARP définit les actions suivantes :</p>
+
+<ul>
+<li>A diffuse un paquet ARP request</li>
+<li>B reconnaı̂t son adresse IP dans le paquet ARP request et répond avec un paquet ARP reply.</li>
+</ul>
+
+<p>Lorsque A reçoit la réponse de B, il note son adresse MAC dans sa table et peut alors encapsuler son
+datagramme dans une trame de niveau 2.</p>
+
+<h3>Routage IP</h3>
+
+<p>Physiquement, deux réseaux doivent être interconnectés par l’intermédiaire d’une machine qui possède
+un point d’attache sur l’un et l’autre des deux réseaux. Une telle connexion n’est cependant pas suffisante
+pour garantir la communication entre les machines situées sur ces deux réseaux. Il faut donc que la
+station reliant les deux réseaux coopère avec les autres machines et soit capable de passer les messages,
+si nécessaire, d’un réseau à l’autre. Cette station qui joue un rôle particulier sur les réseaux s’appelle un
+<em>routeur</em> (ou passerelle ou en anglais _gateway_).</p>
+
+<p>Le mécanisme permettant l’acheminement des paquets à bon port à travers un ensemble de réseau est
+appelé routage. Ce routage peut être plus ou moins perfectionné, par exemple <em>statique</em> (les chemins sont
+calculés une fois pour toute), ou encore <em>dynamique</em> (les chemins peuvent varier dans le temps suivant
+différents critères, avec en particulier l’apparition ou la disparition de liens dans le réseau).</p>
+
+<p>Rappel 1 l’adresse internet (ou adresse IP) est partagée en deux parties :</p>
+<ul>
+<li>l’adresse du réseau sur lequel la machine est située ;</li>
+<li>l’adresse de cette machine sur ce réseau.</li>
+</ul>
+
+<p>Le netmask ou masque de sous-réseau indique quelle partie de l’adresse IP correspond à l’adresse
+réseau de la façon suivante : tous les bits de la partie réseau de l’adresse sont à 1 et tous les bits de la
+partie machine sont à 0. Exemple : <code>192.168.1.1/24</code> a pour netmask <code>255.255.255.0</code> (24 bits de préfixe).
+Le 24 correspond au nombre de bits à 1 en partant de la gauche.</p>
+
+<p>C’est sur la première partie de l’adresse (partie réseau) 2 que se basent les routeurs pour faire parvenir
+les messages au réseau destination. Une fois les messages arrivés sur le réseau (ie. sur une station direc-
+tement connectée au réseau), les stations concernées s’arrangent pour les récupérer. Ainsi, les routeurs
+n’ont plus qu’à mémoriser la liste des réseaux qu’ils peuvent atteindre et les chemins y accédant. Pour
+cela, les routeurs gèrent une table appelée **table de routage** dans laquelle ils stockent ces informations.
+Les stations _hosts_ doivent également gérer une telle table pour savoir à quel routeur il faut s’adresser sur
+son réseau local pour atteindre le réseau destination.</p>
+
+<p>On peut distinguer deux fonctionnalités indépendantes dans la couche réseau :</p>
+<ul>
+<li>la prise de décision sur la route à prendre au vu de la table de routage et de l’adresse destination
+contenue dans le paquet</li>
+<li>2. la mise à jour des tables de routage.</li>
+</ul>
+<p>Dans ce TP nous configurerons manuellement les tables de routage.</p>
+</main>
+</body>
+</html>
