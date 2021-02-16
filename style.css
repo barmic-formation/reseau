@@ -1,0 +1,52 @@
+.wrapper {
+    display: grid;
+    grid-template-columns:
+    1fr
+    min(65ch, 100%)
+    1fr;
+}
+
+.wrapper > * {
+  grid-column: 2;
+}
+
+.full-bleed {
+  width: 100%;
+  grid-column: 1 / 4;
+}
+
+body {
+    background-color: #292e39;
+    color: #d8dee9;
+}
+
+nav {
+    background-color: #4c566a;
+    border: 2px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 12rem;
+    padding: 2rem;
+    margin: 5px;
+    border-radius: 10%;
+}
+
+pre {
+    background-color: #434c5e;
+    border-radius: 3%;
+    padding: 3px;
+}
+
+em {
+    font-weight: bold;
+    color: #88c0d0;
+}
+
+p {
+    text-align: justify;
+}
+
+a:visited {
+    color: #d8dee9;
+}
