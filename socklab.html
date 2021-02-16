@@ -44,11 +44,11 @@ socklab udp
 socklab tcp
 </pre>
 
-<p>une fois dans l'invite de commande vous pouvez utiliser la commande `?` ou `help` pour obtenir l'aide.</p>
+<p>une fois dans l'invite de commande vous pouvez utiliser la commande <code>?</code> ou <code>help</code> pour obtenir l'aide.</p>
 
 <h2>UDP</h2>
 
-<p>Vous pouvez créer des sockets avec la commande `s`. Le programme vous affiche alors 2 informations :</p>
+<p>Vous pouvez créer des sockets avec la commande <code>s</code>. Le programme vous affiche alors 2 informations :</p>
 <ul>
 <li>le numéro de socket : c'est ce qui permet d'utiliser la socket</li>
 <li>le numéro de port : c'est l'adresse exterieur de la socket.</li>
@@ -62,8 +62,8 @@ socklab tcp
 
 <p>TCP est un protocole client/server :</p>
 <ul>
-<li>le serveur ouvre une socket passive puis attend une connexion avec la commande `accept`</li>
-<li>les clients peuvent se connecter à cette socket avec la commande `connect`</li>
+<li>le serveur ouvre une socket passive puis attend une connexion avec la commande <code>accept</code></li>
+<li>les clients peuvent se connecter à cette socket avec la commande <code>connect</code></li>
 </ul>
 <p>Du coté du client le reste du fonctionement est le même qu'en UDP.
 Du coté du serveur, on n'utilise la socket passive _que_ pour accepter des connexions. Lorsque l'on accepte une connexion, une nouvelle socket est créé (socklab vous indique son numéro). C'est cette dernère que vous devez utiliser pour commeuniquer avec le client qui vient de se connecter.</p>
