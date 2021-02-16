@@ -82,3 +82,8 @@ a:visited {
 ul {
     padding-left: 20px;
 }
+
+.img-center {
+    display: flex;
+    justify-content: center;
+}

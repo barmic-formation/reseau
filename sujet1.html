@@ -59,16 +59,16 @@ Lorsque <code>tracert</code> ou <code>traceroute</code> vous affiche des <code>*
 
 <p>Pour ce premier TP vous n'aurez besoin que 2 de machines avec un seul lien entre elles.</p>
 
-<ul>
-<li>1. Commencez par créer 2 machines virtuelles virtualbox sans les démarrer.</li>
-<li>2. Dans GNS, importez vos machines virtuelles comme template (<code>Edit > Preferences > VirtualBox VMs puis New</code>)</li>
-<li>3. Dans la barre de gauche ouvrez <code>End devices</code> vous devriez retrouver vos machines. Glissez-les dans la zone principale.</li>
-<li>4. Faites un clique droit sur chaque machine, allez dans <code>Configure</code> puis <code>Network</code> et cochez la case <code>Allow GNS3 tu use any configured VirtualBox adapter</code>.</li>
-<li>5. Ajoutez un lien entre les 2 machines. Vous pouvez choisir l'interface ethernet que vous souhaitez.</li>
-</ul>
+<ol>
+<li>Commencez par créer 2 machines virtuelles virtualbox sans les démarrer.</li>
+<li>Dans GNS, importez vos machines virtuelles comme template (<code>Edit > Preferences > VirtualBox VMs puis New</code>)</li>
+<li>Dans la barre de gauche ouvrez <code>End devices</code> vous devriez retrouver vos machines. Glissez-les dans la zone principale.</li>
+<li>Faites un clique droit sur chaque machine, allez dans <code>Configure</code> puis <code>Network</code> et cochez la case <code>Allow GNS3 tu use any configured VirtualBox adapter</code>.</li>
+<li>Ajoutez un lien entre les 2 machines. Vous pouvez choisir l'interface ethernet que vous souhaitez.</li>
+</ol>
 <p>Voici la toppologie que vous devrier avoir :</p>
 
-<img src="gns.png">
+<p class="img-center"><img src="gns.png"></p>
 
 <p>Pour terminer on va rapidement configurer le réseau de chacune des machines.</p>
 
@@ -126,15 +126,15 @@ sendto &lt;id de socket> &lt;nom de machine> &lt;port destinataire>
 recvfrom &lt;id de socket> &lt;nb octets>
 </pre>
 
-<p>Pour utiliser wireshark, faites un clique droit sur le lien entre les 2 machines et choi de lancer la capture.</p>
+<p>Pour utiliser wireshark, faites un clique droit sur le lien entre les 2 machines et choisissez de lancer la capture.</p>
 
 <ul>
-<li><em>Question 7</em> Quels paquets transitent sur le réseau lors de l’envoi d’un message par UDP ?</li>
-<li><em>Question 8</em> Que se passe-t-il si l’on demande à lire moins d’octets que ceux envoyés ?</li>
-<li><em>Question 9</em> Si l’on envoie plusieurs messages avant de lire de l’autre côté ?</li>
-<li><em>Question 10</em> Si vous envoyez le message vers un port inexistant ?</li>
-<li><em>Question 11</em> Si vous envoyez plus de données que la taille du MTU ? (pour envoyer 1000 octets tapez <code>#1000</code> à la place du message à envoyer). La taille maximale d’un paquet est donnée par son MTU (<code>ifconfig</code>). Que signifie MTU ?</li>
-<li><em>Question 12</em> Consultez les options par défaut de votre socket. Changez la taille du tampon (buffer) de réception. Expérimentez des envois de données supérieures.</li>
+<li><em>Question 7</em> Quels paquets transitent sur le réseau lors de l’envoi d’un message par UDP ?</li>
+<li><em>Question 8</em> Que se passe-t-il si l’on demande à lire moins d’octets que ceux envoyés ?</li>
+<li><em>Question 9</em> Si l’on envoie plusieurs messages avant de lire de l’autre côté ?</li>
+<li><em>Question 10</em> Si vous envoyez le message vers un port inexistant ?</li>
+<li><em>Question 11</em> Si vous envoyez plus de données que la taille du MTU ? (pour envoyer 1000 octets tapez <code>#1000</code> à la place du message à envoyer). La taille maximale d’un paquet est donnée par son MTU (<code>ifconfig</code>). Que signifie MTU ?</li>
+<li><em>Question 12</em> Consultez les options par défaut de votre socket. Changez la taille du tampon (buffer) de réception. Expérimentez l'envoi de messages plus grands.</li>
 </ul>
 
 <h2>Protocole TCP</h2>
@@ -149,13 +149,12 @@ socklab tcp
 Établissez deux connexions vers un même port destinataire ?</li>
 <li><em>Question 14</em> Qu’est-ce qui identifie une connexion TCP ?</li>
 </ul>
-<p>Fermez la connexion avec close.</p>
+<p>Fermez la connexion avec <code>close</code>.</p>
 <ul>
 <li><em>Question 15</em> Quels sont les messages échangés ? Faites un diagramme temporel indiquant les flags positionnés, les numéros de séquence et d’acquittement si besoin.</li>
 Établissez une connexion TCP puis déconnectez le câble réseau d’une des machines. Envoyez un message depuis la machine où vous avez lancé wireshark vers l’autre machine.
-<li><em>Question 16</em> Que se passe-t-il ? Et lorsque vous rebranchez le câble ? Que peut-on en conclure ? Quelle est la durée entre deux retransmissions ? Quelle est la durée entre la 1 re émission et la dernière retransmission ?</li>
-<li><em>Question 17</em> Consultez les options par défaut de votre socket. Changez la taille du tampon de réception.
-Expérimentez des envois de données supérieures.</li>
+<li><em>Question 16</em> Que se passe-t-il ? Et lorsque vous rebranchez le câble ? Que peut-on en conclure ? Quelle est la durée entre deux retransmissions ? Quelle est la durée entre la 1 re émission et la dernière retransmission ?</li>
+<li><em>Question 17</em> Consultez les options par défaut de votre socket (avec la commande <code>options</code> suivi du numero de socket). Changez la taille du tampon de réception. Expérimentez d'envoyer des messages plus grands.</li>
 </ul>
 </main>
 </body>
