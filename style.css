@@ -60,6 +60,12 @@ nav {
     border-radius: 10%;
 }
 
+@media(max-width: 600px) {
+    nav {
+        display: none;
+    }
+}
+
 pre {
     background-color: #434c5e;
     border-radius: 3%;
