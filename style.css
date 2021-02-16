@@ -22,11 +22,30 @@
     font-display: swap;
     src: url(Rubik.ttf) format('truetype');
 }
+@font-face {
+    font-family: 'Rubik Italic';
+    font-style: italic;
+    font-weight: 300;
+    font-display: swap;
+    src: url(italic.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'Rubik Bold';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url(bold.ttf) format('truetype');
+  }
+  
 
 body {
     background-color: #292e39;
     color: #d8dee9;
     font-family: Rubik, sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: "Rubik Bold", sans-serif;
 }
 
 nav {
@@ -58,4 +77,8 @@ p {
 
 a:visited {
     color: #d8dee9;
+}
+
+ul {
+    padding-left: 20px;
 }
