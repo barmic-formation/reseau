@@ -24,6 +24,7 @@
                 <li><a href="explications.html">Explications</a></li>
                 <li><a href="faq.html">FAQ</a></li>
                 <li><a href="socklab.html">socklab</a></li>
+                <li><a href="virtualbox.html">virtualbox</a></li>
             </ul>
         </li>
     </ul>
@@ -61,7 +62,7 @@ Lorsque <code>tracert</code> ou <code>traceroute</code> vous affiche des <code>*
 <p>Pour ce premier TP vous n'aurez besoin que 2 de machines avec un seul lien entre elles.</p>
 
 <ol>
-<li>Commencez par créer 2 machines virtuelles virtualbox sans les démarrer.</li>
+<li>Commencez par <a href="virtualbox.html">créer 2 machines virtuelles virtualbox</a> sans les démarrer.</li>
 <li>Dans GNS, importez vos machines virtuelles comme template (<code>Edit > Preferences > VirtualBox VMs puis New</code>)</li>
 <li>Dans la barre de gauche ouvrez <code>End devices</code> vous devriez retrouver vos machines. Glissez-les dans la zone principale.</li>
 <li>Faites un clique droit sur chaque machine, allez dans <code>Configure</code> puis <code>Network</code> et cochez la case <code>Allow GNS3 tu use any configured VirtualBox adapter</code>.</li>
@@ -77,19 +78,13 @@ Lorsque <code>tracert</code> ou <code>traceroute</code> vous affiche des <code>*
 
 <p>Les machines n'ont pas d'autoconfiguration, nous allons les configurer. Nous entreront plus en détails dans le second TP.</p>
 
-<p>Sur chaque la première machine lancez:</p>
+<p>Sur chaque la première machine lancez :</p>
 
-<pre>
-ifconfig em0 inet 10.0.0.1 netmask 255.255.255.0
-ifconfig em0 ether 01:01:01:01:01:01
-</pre>
+<pre>ifconfig em0 inet 10.0.0.1 netmask 255.255.255.0</pre>
 
 <p>Sur la seconde machine :</p>
 
-<pre>
-ifconfig em0 inet 10.0.0.2 netmask 255.255.255.0
-ifconfig em0 ether 01:01:01:01:01:02
-</pre>
+<pre>ifconfig em0 inet 10.0.0.2 netmask 255.255.255.0</pre>
 
 <p>Pour vérifier que tout fonctionne, depuis la premier machine lancez :</p>
 

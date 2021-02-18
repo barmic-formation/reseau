@@ -24,6 +24,7 @@
                   <li><a href="explications.html">Explications</a></li>
                   <li><a href="faq.html">FAQ</a></li>
                   <li><a href="socklab.html">socklab</a></li>
+                  <li><a href="virtualbox.html">virtualbox</a></li>
               </ul>
           </li>
       </ul>
@@ -69,6 +70,41 @@ socklab tcp
 <p>Du coté du client le reste du fonctionement est le même qu'en UDP.
 Du coté du serveur, on n'utilise la socket passive <em>uniquement</em> pour accepter des connexions. Lorsque l'on accepte une connexion, une nouvelle socket est créé (socklab vous indique son numéro). C'est cette dernère que vous devez utiliser pour commeuniquer avec le client qui vient de se connecter.</p>
 
+<p>Exemple d'utilisation:</p>
+<div style="display: grid;">
+  <div style="grid-column: 1; grid-row: 1; text-align: center">
+    <p style="text-align: center;">Machine 1</p>
+  </div>
+  <pre style="grid-column: 1; grid-row: 2">
+socklab-TCP> passive
+TCP socket created: id=<em>3</em>, port=<em>37495</em>
+socklab-TCP> accept <em>3</em></pre>
+  <pre style="grid-column: 1; grid-row: 4">
+A connection from 10.0.0.2 (44307) was received.
+Connection is established, with socket ID <em>4</em>.</pre>
+<div style="grid-column: 2; grid-row: 1; text-align: center">
+  <p style="text-align: center;">Machine 2</p>
+</div>
+  <pre style="grid-column: 2; grid-row: 3">
+socklab-TCP> connect 10.0.0.1 37495
+TCP socket created: id=<em>3</em>, port=44307
+Connection established.</pre>
+<div style=" grid-row: 5; grid-column: 1 / 3; text-align: center;">
+  La connexion est établie.</br>
+  Pour envoyer un message :
+</div>
+<pre style="grid-column: 1; grid-row: 6">
+socklab-TCP> write <em>4</em> AwesomeMessage
+Sent 14 bytes
+</pre>
+<pre style="grid-column: 2; grid-row: 7">
+socklab-TCP> read <em>4</em> 14
+Read 14 bytes: message=&lt;AwesomeMessage>
+</pre>
+<div style=" grid-row: 8; grid-column: 1 / 3; text-align: center;">
+  Ici on envoie depuis la machine 1, mais ça fonctionne dans les 2 sens.
+</div>
+</div>
 </main>
 </body>
 </html>
