@@ -147,7 +147,7 @@ socklab tcp
 </ul>
 <p>Fermez la connexion avec <code>close</code>.</p>
 <ul>
-<li><em>Question 15</em> Quels sont les messages échangés ? Faites un diagramme temporel indiquant les flags positionnés, les numéros de séquence et d’acquittement si besoin.</li>
+<li><em>Question 15</em> Quels sont les messages échangés ? Faites un diagramme temporel (vous pouvez le <a href="faq.html#flowChart">créer via wireshark</a>) indiquant les flags positionnés, les numéros de séquence et d’acquittement si besoin.</li>
 Établissez une connexion TCP puis déconnectez le câble réseau d’une des machines. Envoyez un message depuis la machine où vous avez lancé wireshark vers l’autre machine.
 <li><em>Question 16</em> Que se passe-t-il ? Et lorsque vous rebranchez le câble ? Que peut-on en conclure ? Quelle est la durée entre deux retransmissions ? Quelle est la durée entre la 1 re émission et la dernière retransmission ?</li>
 <li><em>Question 17</em> Consultez les options par défaut de votre socket (avec la commande <code>options</code> suivi du numero de socket). Changez la taille du tampon de réception. Expérimentez d'envoyer des messages plus grands.</li>

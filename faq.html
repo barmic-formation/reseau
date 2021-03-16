@@ -78,7 +78,17 @@ L'adresse mac de l'interface ethernet est <code>02:42:04:51:00:a0</code>.</p>
 
 <p>Clique droit sur chacune de vos machines, faites clique droit > <code>Configure</code> > <code>Network</code> et cochez la case : <code>Allow GNS3 to use any configured VirtualBox adapter</code>.</p>
 
-<h2>Créer des diagrammes de séquence avec wireshark</h2>
+<h2 id="flowChart">Créer des diagrammes de séquence avec wireshark</h2>
+
+<p>Quand vous avez une trace dans wireshark, filtrez-la si nécessaire pour n'avoir que ce dont vous avez besoin :</p>
+<ul>
+    <li>soit en tappant un filtre dans le champ au dessus des paquets (`ip.addr == 10.0.0.1` pour tous les paquets qui entrent et sortent de la machine en question par exemple)</li>
+    <li>soit avec tcp quand vous avez trouvé un paquet qui fait parti de ceux qui vous intéresse, faire un clique droit dessus en <code>Follow</code> > <code>TCP stream</code> (<code>Suivre</code> > <code>Flux TCP</code>)</li>
+</ul>
+
+<p>Ensuite dans le menu <code>Statistics</code> > <code>Flow Graph</code> (<code>Statistiques</code> > <code>Graphique des flux</code>).
+Un graphe va apparaitre. Cochez l'option en bas à gauche pour qu'il n'affiche que les paquets que vous aurez filtré.</p>
+
 </main>
 </body>
 </html>
