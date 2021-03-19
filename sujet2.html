@@ -15,7 +15,7 @@
                 Sujets :
                 <ul>
                     <li><a href="sujet1.html">Sujet 1</a></li>
-                    <!-- <li><a href="sujet2.html">Sujet 2</a></li> -->
+                    <li><a href="sujet2.html">Sujet 2</a></li>
                 </ul>
             </li>
             <li>
@@ -255,21 +255,19 @@ Gardez la dernière topologie réalisée dans la manipulation précédente, puis
 d’un réseau à un autre (<code>ip.forwarding</code>). Il est donc inutile de la reparamétrer ici ; mais notez bien que ce
 paramétrage est indispensable, et que ce n’est pas le démon qui le réalise.</p>
 
-<p><em>Question 20</em> Demandez par netstat -r le contenu des tables de routage des quatre stations. Que concluez-
+<p><em>Question 20</em> Demandez par <code>netstat -r</code> le contenu des tables de routage des quatre stations. Que concluez-
 vous ? Vérifiez par un ping que les stations A et C peuvent communiquer.</p>
 
-<p>Mettez maintenant en place la station D comme indiqué dans la configuration ci-dessous sans
-modifier les configurations de A, B et C (attention à utiliser les même interfaces ethernet dans les même réseau que précédement).
-Il faut donc reconfigurer les interfaces de D pour que leurs adresses IP appartiennent aux réseaux 1 et 2 respectivement.</p>
+<p>Pour la suite nous allons revenir à la configuration initiale :</p>
 
-<p class="img-center"><img src="last.png"></p>
+<p class="img-center"><img src="3pc.png"></p>
 
-<p>> Remarque : Pour connecter les 3 stations de chaque réseau, utilisez un hub. Un switch ne permettrait
-pas d’observer en D les trames qui ne lui sont pas destinées (filtrage des adresse MAC).</p>
-
-<p>Sur la station D, lancez l’utilitaire Wireshark afin de capturer des paquets sur les deux réseaux.
+<p>Lancez une capture sur chaque lien.
 Ne touchez pas aux stations A, B et C tant que vous n’avez pas interceptés environ quatre paquets
-par interface sur la station D. L’opération ne devrait pas durer plus de 2 minutes.</p>
+par interface sur la station D. L’opération ne devrait pas durer plus de 2 minutes.
+Arretez les captures et sauvegardez les dans des fichiers (au format pcap ou pcang).
+À partir de l'un des Wireshark, fusionnez les fichiers (File > Merge). Attention à bien effectuer une fusion chronologique
+(c'est lorsque l'on choisi le fichier que l'on peut choisir).</p>
 
 <p><em>Question 21</em> Analysez les paquets capturés. Comment les routeurs se comportent-ils vis-à-vis des hosts ?
 Détaillez les informations communiquées avec le protocole RIP.</p>
