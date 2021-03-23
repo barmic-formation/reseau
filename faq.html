@@ -89,6 +89,24 @@ L'adresse mac de l'interface ethernet est <code>02:42:04:51:00:a0</code>.</p>
 <p>Ensuite dans le menu <code>Statistics</code> > <code>Flow Graph</code> (<code>Statistiques</code> > <code>Graphique des flux</code>).
 Un graphe va apparaitre. Cochez l'option en bas à gauche pour qu'il n'affiche que les paquets que vous aurez filtré.</p>
 
+<h2 id="routage">Manipulation des tables de routage</h2>
+
+<p>Nous avons vu que toutes les stations, qu’elles soient hosts ou routeurs, gèrent une table de routage.
+Nous avons la possibilité par l’intermédiaire de certains outils standard de manipuler cette table, comme
+afficher les entrées, ajouter ou supprimer une entrée.</p>
+<p>Pour afficher la table : <code>netstat -r</code></p>
+<p>Pour mettre à jour la table, nous utiliserons l’utilitaire route de la manière suivante :</p>
+
+<pre><code>route [add|delete] destination gateway</code></pre>
+
+<p>en remplaçant “destination” et “gateway” par leurs adresses IP respectives. La destination est toujours
+une adresse de réseau, tandis que le routeur possède une adresse d’hôte.</p>
+
+<p>Exemple 1 <code>route add 192.0.0.0/16 193.0.0.1</code> ajoute une route indiquant que pour aller au réseau
+<code>192.0.0.0/16</code>, il faut envoyer le paquet au routeur voisin <code>193.0.0.1</code>.</p>
+
+<p><code>route delete 192.0.0.0/16</code> supprime la route vers ce réseau.
+Pour effectuer un nettoyage complet de la table de routage, taper <code>route flush</code>.</p>
 </main>
 </body>
 </html>
